@@ -14,12 +14,12 @@ class OrderView(APIView):
             orders = Order.objects.all()
             serializer = OrderSerializers(orders, many=True)
             return Response({
-                'date': serializer.orders,
+                'data': serializer.data,
                 'message': "Orders Data fetched successfully"
             }, status = status.HTTP_200_OK)
         except:
             return Response({
-                'date': {},
+                'data': {},
                 'message': "Something went wrong while fetching the data"
             }, status = status.HTTP_400_BAD_REQUEST)
 
@@ -30,18 +30,18 @@ class OrderView(APIView):
 
             if not serializer.is_valid():
                 return Response({
-                    'date': serializer.errors,
+                    'data': serializer.errors,
                     'message': "Something went wrong"
                 }, status = status.HTTP_400_BAD_REQUEST)
 
             serializer.save()
             return Response({
-                'date': serializer.data,
+                'data': serializer.data,
                 'message': "New order is created"
             }, status = status.HTTP_201_CREATED)
         except:
             return Response({
-                'date': {},
+                'data': {},
                 'message': "Something went wrong in creation of order"
             }, status = status.HTTP_400_BAD_REQUEST)
 
@@ -52,7 +52,7 @@ class OrderView(APIView):
 
             if not order.exists():
                 return Response({
-                    'date': {},
+                    'data': {},
                     'message': "Order is not found with this ID"
                 }, status = status.HTTP_404_NOT_FOUND)
 
@@ -60,20 +60,20 @@ class OrderView(APIView):
 
             if not serializer.is_valid():
                 return Response({
-                    'date': serializer.errors,
+                    'data': serializer.errors,
                     'message': "Something went wrong"
                 }, status = status.HTTP_400_BAD_REQUEST)
 
             serializer.save()
 
             return Response({
-                'date': serializer.data,
+                'data': serializer.data,
                 'message': "Order is updated successfully"
             }, status = status.HTTP_200_OK)
 
         except:
             return Response({
-                'date': {},
+                'data': {},
                 'message': "Something went wrong in creation of order"
             }, status = status.HTTP_400_BAD_REQUEST)
 
@@ -84,17 +84,17 @@ class OrderView(APIView):
 
             if not order.exists():
                 return Response({
-                    'date': {},
+                    'data': {},
                     'message': "Order is not found with this ID"
                 }, status = status.HTTP_404_NOT_FOUND)
 
             order[0].delete()
             return Response({
-                'date': {},
+                'data': {},
                 'message': "Order is Deleted"
             }, status = status.HTTP_200_OK)
         except:
             return Response({
-                'date': {},
+                'date=a': {},
                 'message': "Something went wrong in deleting the order"
             }, status = status.HTTP_400_BAD_REQUEST)
