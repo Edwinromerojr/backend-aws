@@ -2,6 +2,9 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
+from django.core.mail import send_mail
+from backend.settings import EMAIL_HOST_USER
+
 
 from .models import Order
 from .serializers import OrderSerializers
@@ -34,6 +37,11 @@ class OrderView(APIView):
                     'message': "Something went wrong"
                 }, status = status.HTTP_400_BAD_REQUEST)
 
+            subject = "New Order is Placed"
+            message = "Dear Customer" + "" + data['customer_name'] + "Your order is placed now. Thanks for your order"
+            email = data['customer_email']
+            recipient_list = [email]
+            send_mail(subject, message, EMAIL_HOST_USER, recipient_list, fail_silently=True)
             serializer.save()
             return Response({
                 'data': serializer.data,
