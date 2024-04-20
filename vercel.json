@@ -10,7 +10,6 @@
         "config": { "distDir": "staticfiles_build" }
     }],
     "routes": [
-        { "handle": "filesystem" },
         {
             "src": "/static/(.*)",
             "dest": "/static/$1"
@@ -19,5 +18,10 @@
             "src": "/(.*)",
             "dest": "backend/wsgi.py"
         }
-    ]
+    ],
+    "functions": {
+        "api": {
+          "runtime": "python3.9"
+        }
+    }
 }
