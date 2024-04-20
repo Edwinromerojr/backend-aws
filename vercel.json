@@ -19,9 +19,7 @@
             "dest": "backend/wsgi.py"
         }
     ],
-    "functions": {
-        "api": {
-          "runtime": "python3.9"
-        }
+    "env": {
+        "PYTHONUNBUFFERED": "true"
     }
 }
