@@ -84,6 +84,17 @@ WSGI_APPLICATION = "backend.wsgi.application"
 #     }
 # }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'backend_aws',
+        'USER': 'mysuperuser',
+        'PASSWORD': 'mysuperuser',
+        'HOST': 'myrdshost.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
